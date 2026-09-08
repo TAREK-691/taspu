@@ -1,481 +1,256 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#120817">
-<title>Happy Birthday, My Love, Taspiya ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Taspiya ❤️</title>
+
 <style>
-/* =========================================================
-   💗 TASPIYA BIRTHDAY SURPRISE — EASY CUSTOMIZATION
-   Change the values below first.
-   ========================================================= */
-:root{
-  --pink:#ff6fae; --hot:#ff3f88; --purple:#a970ff; --red:#ff5277;
-  --bg:#09050f; --card:rgba(255,255,255,.075); --text:#fff7fc;
-  --muted:#d9bfd2; --gold:#ffd98a; --glass:rgba(255,255,255,.10);
-  --font-bn:"Noto Sans Bengali","Noto Sans",system-ui,sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 50% 10%,#27102d 0,#100817 38%,var(--bg) 75%);color:var(--text);font-family:var(--font-bn);overflow-x:hidden}
-button{font:inherit}
-#app{min-height:100vh;position:relative}
-.page{min-height:100svh;padding:86px 18px 55px;display:flex;align-items:center;justify-content:center;position:relative;isolation:isolate}
-.inner{width:min(940px,100%);margin:auto}
-.hidden{display:none!important}
-.reveal{animation:rise .85s cubic-bezier(.2,.8,.2,1) both}
-@keyframes rise{from{opacity:0;transform:translateY(35px) scale(.98)}to{opacity:1;transform:none}}
-@keyframes float{50%{transform:translateY(-10px)}}
-@keyframes pulse{50%{transform:scale(1.06);filter:drop-shadow(0 0 24px var(--pink))}}
-@keyframes blink{50%{opacity:0}}
-@keyframes spin{to{transform:rotate(360deg)}}
 
-#sky{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}
-.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.6;animation:twinkle 2s infinite alternate}
-@keyframes twinkle{to{opacity:.15;transform:scale(.5)}}
-.rain{position:absolute;top:-90px;white-space:nowrap;color:#ffb6d7;font-size:clamp(11px,2vw,15px);opacity:.14;animation:fall linear infinite}
-@keyframes fall{to{transform:translateY(115vh) rotate(2deg)}}
-.heart{position:absolute;font-size:18px;opacity:.5;animation:heartfall linear forwards}
-@keyframes heartfall{from{transform:translateY(-30px) rotate(0)}to{transform:translateY(110vh) rotate(360deg);opacity:0}}
-.spark{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 14px #fff;animation:spark 2.5s ease-in-out infinite}
-@keyframes spark{50%{opacity:.15;transform:scale(.3)}}
-
-.kicker{letter-spacing:3px;text-transform:uppercase;color:#ffacd0;font-size:12px}
-h1,h2{line-height:1.12;margin:12px 0}
-h1{font-size:clamp(39px,10vw,78px)}
-h2{font-size:clamp(32px,7vw,54px)}
-p{line-height:1.85;color:var(--muted);font-size:clamp(15px,3vw,18px)}
-.gradient{background:linear-gradient(110deg,#fff,var(--pink),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-.center{text-align:center}
-.glow{filter:drop-shadow(0 0 18px rgba(255,83,153,.5))}
-.btn{border:1px solid rgba(255,255,255,.2);color:#fff;background:linear-gradient(135deg,var(--hot),#8d55e9);padding:15px 24px;border-radius:999px;min-height:52px;cursor:pointer;box-shadow:0 12px 35px rgba(255,55,137,.22);transition:.25s;touch-action:manipulation}
-.btn:active{transform:scale(.96)}
-.btn.secondary{background:var(--glass);box-shadow:none}
-.badge{display:inline-block;padding:7px 13px;border:1px solid #ffffff1e;border-radius:999px;color:#ffc5df;background:#ffffff08}
-
-.hero-heart{font-size:70px;animation:pulse 1.7s infinite}
-.scrollhint{margin-top:30px;opacity:.6;font-size:12px}
-
-.envelope-wrap{perspective:1000px;margin:30px auto;max-width:410px}
-.envelope{height:245px;position:relative;cursor:pointer;transform-style:preserve-3d}
-.env-body{position:absolute;inset:35px 0 0;background:linear-gradient(135deg,#7d244e,#351634);border-radius:12px;box-shadow:0 25px 70px #0008}
-.flap{position:absolute;z-index:3;top:35px;left:0;width:100%;height:120px;background:linear-gradient(135deg,#bd4d7e,#57204d);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:1s}
-.letter{position:absolute;z-index:2;left:7%;width:86%;height:185px;top:45px;background:#fff8fb;color:#35142a;border-radius:8px;padding:24px 18px;transition:1s;box-shadow:0 10px 40px #0007}
-.envelope.open .flap{transform:rotateX(180deg);z-index:1}
-.envelope.open .letter{transform:translateY(-105px);z-index:4}
-.letter h3{margin:0 0 8px;color:#8e315c}
-
-.typebox{min-height:180px;background:var(--card);border:1px solid #ffffff14;border-radius:24px;padding:24px;box-shadow:0 20px 70px #0004}
-.cursor{display:inline-block;width:2px;height:1em;background:var(--pink);vertical-align:-2px;animation:blink .8s infinite}
-
-.timeline{display:grid;gap:15px;margin-top:28px}
-.memory{background:linear-gradient(145deg,#ffffff0d,#ffffff03);border:1px solid #ffffff12;border-radius:22px;padding:20px;position:relative;overflow:hidden;transition:.35s}
-.memory:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--pink),var(--purple))}
-.memory:hover{transform:translateY(-4px)}
-
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
-.polaroid{background:#fff8fb;color:#281321;padding:10px 10px 18px;transform:rotate(var(--r));box-shadow:0 18px 40px #0008;cursor:pointer;transition:.35s}
-.polaroid:nth-child(2n){--r:2deg}.polaroid:nth-child(2n+1){--r:-2deg}
-.polaroid:hover,.polaroid:active{transform:rotate(0) scale(1.035)}
-.photo{aspect-ratio:1/1;background:linear-gradient(135deg,#35182f,#9b4f7b);display:grid;place-items:center;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover}
-.polaroid small{display:block;text-align:center;padding-top:9px;font-weight:700}
-
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
-.love-card{min-height:145px;padding:20px;border-radius:22px;background:linear-gradient(145deg,#ff6fae12,#9d69ff10);border:1px solid #ffffff13;transition:.3s}
-.love-card:hover{transform:translateY(-5px) rotate(.5deg);border-color:#ff75b255}
-.num{color:#ff9ac4;font-weight:800}
-
-.flirt{background:radial-gradient(circle,#5e214a,#190b1e 70%);border-radius:30px;padding:35px 20px;text-align:center;border:1px solid #ff6fae25}
-.flirt-line{font-size:clamp(20px,5vw,32px);min-height:90px;display:grid;place-items:center}
-
-.meter{width:min(520px,100%);height:25px;border-radius:999px;background:#ffffff12;overflow:hidden;margin:30px auto 15px;border:1px solid #ffffff12}
-.bar{height:100%;width:1%;background:linear-gradient(90deg,var(--pink),var(--purple));transition:1s;border-radius:inherit}
-.percent{font-size:clamp(45px,12vw,80px);font-weight:900}
-
-.gift{font-size:110px;cursor:pointer;display:inline-block;animation:float 2s ease-in-out infinite;filter:drop-shadow(0 15px 30px #ff4e8d55)}
-.gift.open{animation:pulse .8s 2}
-
-.moon{width:170px;height:170px;border-radius:50%;background:#fff4d8;box-shadow:0 0 70px #ffe8aa88;margin:0 auto 30px;position:relative}
-.moon:after{content:"";position:absolute;background:#120817;width:155px;height:155px;border-radius:50%;left:42px;top:-15px}
-
-.promise{font-size:clamp(24px,6vw,43px);text-align:center;line-height:1.6;color:#fff}
-.promise em{color:#ff9fc7;font-style:normal}
-
-.final{background:#020107}
-.heartbeat{font-size:72px;animation:pulse .9s infinite}
-.replay{margin-top:25px}
-
-.music{position:fixed;right:14px;bottom:14px;z-index:50;width:50px;height:50px;border-radius:50%;border:1px solid #ffffff25;background:#201022;color:#fff;box-shadow:0 10px 30px #0008;cursor:pointer}
-.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(20px);background:#fff;color:#26121f;padding:12px 18px;border-radius:999px;z-index:60;opacity:0;transition:.3s;pointer-events:none;text-align:center;max-width:90%}
-.toast.show{opacity:1;transform:translateX(-50%)}
-
-@media(min-width:700px){
- .gallery{grid-template-columns:repeat(3,1fr)}
- .cards{grid-template-columns:repeat(3,1fr)}
- .timeline{grid-template-columns:repeat(2,1fr)}
+body{
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at center, #35152d 0%, #160b19 45%, #050308 100%);
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
 }
-@media(prefers-reduced-motion:reduce){
- *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}
+
+/* Stars */
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:.7;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.15;transform:scale(.6)}
+    to{opacity:1;transform:scale(1.5)}
+}
+
+/* Main */
+.container{
+    width:100%;
+    text-align:center;
+    position:relative;
+    z-index:5;
+    padding:25px;
+}
+
+.message{
+    position:absolute;
+    width:100%;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+    opacity:0;
+    pointer-events:none;
+}
+
+/* First text */
+.first{
+    animation:firstMessage 5s ease forwards;
+}
+
+.first h1{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(48px,11vw,100px);
+    color:#fff;
+    text-shadow:
+        0 0 10px #ff7eb3,
+        0 0 25px #ff4f9a,
+        0 0 50px #ff2d82;
+}
+
+.first .heart{
+    display:inline-block;
+    animation:heartbeat 1s infinite;
+}
+
+/* Second text */
+.second{
+    animation:secondMessage 2s ease forwards;
+    animation-delay:5s;
+}
+
+.second h2{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(38px,8vw,75px);
+    color:#fff;
+    text-shadow:
+        0 0 12px #ff8ac0,
+        0 0 30px #ff3d91;
+    line-height:1.2;
+}
+
+.second p{
+    margin-top:18px;
+    font-size:clamp(18px,4vw,30px);
+    letter-spacing:2px;
+    color:#ffd6e8;
+}
+
+@keyframes firstMessage{
+    0%{
+        opacity:0;
+        transform:translateY(-40%);
+        filter:blur(12px);
+    }
+    18%{
+        opacity:1;
+        transform:translateY(-50%);
+        filter:blur(0);
+    }
+    72%{
+        opacity:1;
+        transform:translateY(-50%);
+        filter:blur(0);
+    }
+    100%{
+        opacity:0;
+        transform:translateY(-70%) scale(1.15);
+        filter:blur(15px);
+    }
+}
+
+@keyframes secondMessage{
+    0%{
+        opacity:0;
+        transform:translateY(-30%) scale(.85);
+        filter:blur(15px);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(-50%) scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.35)}
+}
+
+/* Floating hearts */
+.heartFloat{
+    position:absolute;
+    bottom:-30px;
+    font-size:20px;
+    animation:floatUp linear forwards;
+    opacity:0;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    15%{opacity:.9}
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Glow circle */
+.glow{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:#ff3f91;
+    filter:blur(130px);
+    opacity:.15;
+    animation:pulse 4s infinite alternate;
+}
+
+@keyframes pulse{
+    from{transform:scale(.8);opacity:.1}
+    to{transform:scale(1.3);opacity:.25}
 }
 </style>
 </head>
+
 <body>
-<div id="sky" aria-hidden="true"></div>
-<div id="app">
-  <audio id="music" loop preload="none">
-    <!-- 🎵 REPLACE THIS with your music file, e.g. music/taspiya-song.mp3 -->
-    <source src="music/romantic.mp3" type="audio/mpeg">
-  </audio>
-  <button class="music" id="musicBtn" aria-label="Music">🔇</button>
-  <div class="toast" id="toast"></div>
 
-  <main id="story">
-    <section class="page" id="s1">
-      <div class="inner center reveal">
-        <div class="hero-heart">❤️</div>
-        <div class="kicker">A little universe made for one special girl</div>
-        <h1 class="gradient">Happy Birthday,<br>My Love, Taspiya ❤️</h1>
-        <p>আজকের এই ছোট্ট digital world-টা শুধু তোমার জন্য।<br>একটু ধীরে এগিও… কারণ গল্পটা তোমাকে নিয়েই।</p>
-        <button class="btn glow" data-next="s2" id="openBtn">Open Your Surprise 💌</button>
-        <div class="scrollhint">tap the button • let the story begin ✨</div>
-      </div>
-    </section>
+<div class="glow"></div>
 
-    <section class="page hidden" id="s2">
-      <div class="inner center reveal">
-        <span class="badge">Chapter 01 • A letter from my heart</span>
-        <h2 class="gradient">For you, Taspiya…</h2>
-        <div class="envelope-wrap">
-          <div class="envelope" id="envelope" tabindex="0" role="button" aria-label="Open love letter">
-            <div class="env-body"></div>
-            <div class="letter">
-              <h3>Dear Taspiya ❤️</h3>
-              <p style="font-size:14px;color:#54283f">This isn't just a birthday wish…<br>It's a little piece of my heart, made specially for you.</p>
-            </div>
-            <div class="flap"></div>
-          </div>
-        </div>
-        <button class="btn hidden" id="letterNext" data-next="s3">Read what I couldn't say… 💗</button>
-      </div>
-    </section>
+<!-- Stars -->
+<div class="star" style="top:10%;left:15%;animation-delay:.2s"></div>
+<div class="star" style="top:18%;left:80%;animation-delay:1s"></div>
+<div class="star" style="top:35%;left:8%;animation-delay:.5s"></div>
+<div class="star" style="top:70%;left:90%;animation-delay:1.3s"></div>
+<div class="star" style="top:82%;left:20%;animation-delay:.8s"></div>
+<div class="star" style="top:55%;left:75%;animation-delay:.3s"></div>
+<div class="star" style="top:25%;left:45%;animation-delay:1.5s"></div>
+<div class="star" style="top:90%;left:65%;animation-delay:.6s"></div>
 
-    <section class="page hidden" id="s3">
-      <div class="inner">
-        <span class="badge">Chapter 02 • Birthday thoughts</span>
-        <h2 class="gradient">আজকের দিনটা…</h2>
-        <div class="typebox"><p id="typed"></p><span class="cursor"></span></div>
-        <div class="center" style="margin-top:25px"><button class="btn" data-next="s4">Our little story →</button></div>
-      </div>
-    </section>
+<div class="container">
 
-    <!-- Chapter 03: Photo-free special chapter -->
-    <section class="page hidden" id="s4">
-      <div class="inner center">
-        <span class="badge">Chapter 03 • Little things about you</span>
-        <h2 class="gradient">তোমার ছোট ছোট জিনিসগুলো… 💗</h2>
-        <p>কোনো ছবি লাগবে না—শুধু তোমাকে নিয়ে কিছু কথা।</p>
+    <!-- First Message -->
+    <div class="message first">
+        <h1>
+            Happy Birthday<br>
+            Dear Taspiya <span class="heart">❤️</span>
+        </h1>
+    </div>
 
-        <div class="cards">
-          <article class="love-card">
-            <span class="num">01</span>
-            <h3>তোমার হাসি 😊</h3>
-            <p>তোমার হাসিটা এমন একটা জিনিস, যেটা দেখলে আমার মন ভালো হওয়ার কোনো permission লাগে না।</p>
-          </article>
-          <article class="love-card">
-            <span class="num">02</span>
-            <h3>তোমার অভিমান 🥹</h3>
-            <p>তোমার ছোট্ট অভিমানও somehow আমার কাছে cute লাগে… যদিও মানাতে গিয়ে একটু ভয় লাগে। 😭❤️</p>
-          </article>
-          <article class="love-card">
-            <span class="num">03</span>
-            <h3>তোমার care 🫶</h3>
-            <p>তুমি হয়তো বুঝতেও পারো না, তোমার ছোট ছোট care আমার কাছে কতটা বড়।</p>
-          </article>
-          <article class="love-card">
-            <span class="num">04</span>
-            <h3>তোমার presence 🌙</h3>
-            <p>কিছু মানুষ পাশে থাকলেই একটা ordinary মুহূর্তও special হয়ে যায়। তুমি তেমনই একজন।</p>
-          </article>
-        </div>
+    <!-- Second Message -->
+    <div class="message second">
+        <h2>
+            Many Many Returns<br>
+            of the Day
+        </h2>
 
-        <div class="center" style="margin-top:28px">
-          <button class="btn" data-next="s5">There is more to say… 💌</button>
-        </div>
-      </div>
-    </section>
+        <p>
+            Dear Bow 🥺❤️
+        </p>
 
-    <!-- Chapter 04: Photo-free birthday wishes -->
-    <section class="page hidden" id="s5">
-      <div class="inner center">
-        <span class="badge">Chapter 04 • Wishes written for you</span>
-        <h2 class="gradient">আজ তোমার জন্য আমার কয়েকটা wish… ✨</h2>
+        <p>
+            Ummah 😘💋
+        </p>
+    </div>
 
-        <div class="timeline">
-          <article class="memory">
-            <span class="num">01 • For your smile</span>
-            <h3>সবসময় হাসো ❤️</h3>
-            <p>জীবন যতই busy বা difficult হোক, তোমার সেই সুন্দর হাসিটা যেন কখনও হারিয়ে না যায়।</p>
-          </article>
-
-          <article class="memory">
-            <span class="num">02 • For your dreams</span>
-            <h3>তোমার সব স্বপ্ন পূরণ হোক 🌸</h3>
-            <p>তুমি যে dreams-গুলো মনে লুকিয়ে রেখেছো, একদিন সেগুলো এক এক করে সত্যি হোক।</p>
-          </article>
-
-          <article class="memory">
-            <span class="num">03 • For your heart</span>
-            <h3>মনটা এমনই সুন্দর থাকুক 💗</h3>
-            <p>তোমার সবচেয়ে সুন্দর জিনিস শুধু তোমার smile না—তোমার সুন্দর মনটাও।</p>
-          </article>
-
-          <article class="memory">
-            <span class="num">04 • For your future</span>
-            <h3>তোমার সামনে শুধু সুন্দর দিন আসুক 🌙</h3>
-            <p>আজকের চেয়ে আগামীকাল ভালো হোক, আর আগামীকালের চেয়েও তার পরের দিনটা সুন্দর হোক।</p>
-          </article>
-        </div>
-
-        <div class="center" style="margin-top:28px">
-          <button class="btn" data-next="s6">Now… let me tell you why I love you ❤️</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="page hidden" id="s6">
-      <div class="inner">
-        <span class="badge">Chapter 05 • The little things</span>
-        <h2 class="gradient">Reasons I love you ❤️</h2>
-        <div class="cards" id="loveCards">
-          <article class="love-card"><span class="num">01</span><h3>Your Smile 😊</h3><p>একটা smile, আর আমার পুরো mood বদলে যায়।</p></article>
-          <article class="love-card"><span class="num">02</span><h3>Your Voice 🥹</h3><p>তোমার voice-এর মধ্যে এমন কিছু আছে… বারবার শুনতে ইচ্ছে করে।</p></article>
-          <article class="love-card"><span class="num">03</span><h3>Your Little Anger 😤❤️</h3><p>রাগ করলেও তুমি somehow cute-ই থাকো। 😌</p></article>
-          <article class="love-card"><span class="num">04</span><h3>The Way You Care 🫶</h3><p>তোমার ছোট ছোট care-গুলো আমার কাছে অনেক বড়।</p></article>
-          <article class="love-card"><span class="num">05</span><h3>Your Beautiful Heart 💗</h3><p>তোমার মনটাই তোমাকে সবচেয়ে beautiful করে।</p></article>
-          <article class="love-card"><span class="num">06</span><h3>Simply… YOU ❤️</h3><p>সব reason-এর শেষে answer একটাই—তুমি।</p></article>
-          <!-- ➕ আরও card চাইলে এই article copy করে যোগ করো -->
-        </div>
-        <div class="center" style="margin-top:28px"><button class="btn" data-next="s7">Okay… one flirty chapter 😏</button></div>
-      </div>
-    </section>
-
-    <section class="page hidden" id="s7">
-      <div class="inner">
-        <div class="flirt">
-          <span class="badge">Chapter 06 • Secretly flirting 😌</span>
-          <h2 class="gradient">একটা প্রশ্ন ছিল… 👀</h2>
-          <div class="flirt-line" id="flirtLine">তুমি জানো তুমি এত সুন্দর কেন? 👀</div>
-          <button class="btn" id="flirtBtn">Why? 😳</button>
-        </div>
-        <div class="center" style="margin-top:28px"><button class="btn secondary" data-next="s8">Enough flirting… maybe 😌 →</button></div>
-      </div>
-    </section>
-
-    <section class="page hidden" id="s8">
-      <div class="inner center">
-        <span class="badge">Chapter 07 • Scientific measurement of love</span>
-        <h2 class="gradient">How much do I love Taspiya?</h2>
-        <div class="percent" id="percent">1%</div>
-        <div class="meter"><div class="bar" id="bar"></div></div>
-        <p id="meterText">Just getting started… ❤️</p>
-        <button class="btn" id="loveBtn">Increase Love ❤️</button>
-        <div style="margin-top:25px"><button class="btn secondary" data-next="s9">Maybe a little gift? 🎁</button></div>
-      </div>
-    </section>
-
-    <section class="page hidden" id="s9">
-      <div class="inner center">
-        <span class="badge">Chapter 08 • A tiny gift</span>
-        <h2 class="gradient">I kept something here for you…</h2>
-        <div class="gift" id="gift" role="button" tabindex="0">🎁</div>
-        <p id="giftText">Tap the gift.</p>
-        <button class="btn hidden" id="giftNext" data-next="s10">Continue our night →</button>
-      </div>
-    </section>
-
-    <section class="page hidden" id="s10">
-      <div class="inner center">
-        <span class="badge">Chapter 09 • Under the same sky</span>
-        <div class="moon"></div>
-        <h2 class="gradient">Future dreams 🌙</h2>
-        <p>Today is your birthday…<br>But I hope I get to celebrate many, many more birthdays with you. ❤️</p>
-        <div class="cards">
-          <article class="love-card"><h3>More sunsets 🌅</h3><p>আরও অনেক ordinary evening-কে extraordinary বানানো।</p></article>
-          <article class="love-card"><h3>More memories 📸</h3><p>আরও হাজারটা picture-worthy মুহূর্ত।</p></article>
-          <article class="love-card"><h3>More birthdays 🎂</h3><p>প্রতি বছর নতুন করে তোমাকে wish করার excuse। 😌</p></article>
-        </div>
-        <button class="btn" style="margin-top:28px" data-next="s11">One promise…</button>
-      </div>
-    </section>
-
-    <section class="page hidden" id="s11">
-      <div class="inner center">
-        <span class="badge">Chapter 10 • My promise</span>
-        <h2 class="gradient">I don't know what the future holds…</h2>
-        <div class="promise">
-          But if I get to choose,<br>
-          <em>I want you in it. ❤️</em>
-        </div>
-        <p style="margin-top:28px">সবকিছু perfect হবে—এমন promise না। শুধু এটুকু… তোমাকে special feel করানোর চেষ্টা যেন কখনও কমে না যায়।</p>
-        <button class="btn" style="margin-top:20px" data-next="s12">There's one last surprise… ✨</button>
-      </div>
-    </section>
-
-    <section class="page hidden final" id="s12">
-      <div class="inner center">
-        <div class="heartbeat">❤️</div>
-        <div id="finalReveal" class="hidden reveal">
-          <div class="kicker">The last page isn't really the end…</div>
-          <h1 class="gradient">TASPIYA ❤️</h1>
-          <h2>Happy Birthday, My Love</h2>
-          <p>May your smile always stay this beautiful.</p>
-          <p><b>I love you, today, tomorrow & every day after that. ♾️</b></p>
-          <p style="font-size:14px">তুমি আমার গল্পের শুধু একটা chapter নও—তুমি সেই মানুষ, যার জন্য গল্পটা এত সুন্দর লাগে। ❤️</p>
-          <button class="btn replay" id="replay">Replay Our Story ❤️</button>
-        </div>
-      </div>
-    </section>
-  </main>
 </div>
 
 <script>
-/* =========================================================
-   💗 EASY TEXT CUSTOMIZATION
-   Edit these values to personalize the story.
-   ========================================================= */
-const CONFIG = {
-  name: "Taspiya",
-  birthdayMessage:
-`আজকের দিনটা শুধু তোমার birthday না, আমার জন্যও একটা special day… কারণ এই পৃথিবীতে Taspiya নামে একজন মানুষ এসেছে, যে আমার কাছে এতটা special. ❤️
+/* Floating hearts continuously */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.className="heartFloat";
 
-তোমাকে নিয়ে বড় বড় কথা বলার চেয়ে একটা simple কথা বলি—তুমি আমার দিনগুলোর মধ্যে এমন কিছু মুহূর্ত এনে দাও, যেগুলো আমি quietly মনে রেখে দিতে চাই।
+    const hearts=["❤️","💕","💗","💖","💘","💞","🌸"];
 
-তোমার হাসি দেখলে মন ভালো হয়ে যায়, তোমার care আমাকে ছুঁয়ে যায়, আর তোমার little little things-গুলো অজান্তেই আমার favourite হয়ে গেছে।
+    heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
 
-আজ তোমার birthday। তাই আমার wish খুব simple—তোমার হাসিটা যেন সবসময় এমনই থাকে, তোমার dreams যেন এক এক করে সত্যি হয়, আর তোমার life যেন ভালোবাসা আর সুন্দর মুহূর্তে ভরে থাকে।
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*25)+"px";
+    heart.style.animationDuration=(5+Math.random()*5)+"s";
 
-Happy Birthday, Taspiya. ❤️ তুমি সত্যিই special।`,
-  finalMessage: "I love you, today, tomorrow & every day after that. ♾️"
-};
+    document.body.appendChild(heart);
 
-const $ = s => document.querySelector(s);
-const $$ = s => [...document.querySelectorAll(s)];
-const music = $("#music");
-
-/* Stars + subtle birthday-text rain across ALL pages */
-const sky = $("#sky");
-for(let i=0;i<75;i++){
-  const e=document.createElement("span"); e.className="star";
-  e.style.left=Math.random()*100+"%"; e.style.top=Math.random()*100+"%";
-  e.style.animationDelay=Math.random()*3+"s"; sky.appendChild(e);
-}
-const rainTexts=["Happy Birthday ❤️","Happy Birthday My Love 💗","Taspiya ❤️","I Love You 🫶","শুভ জন্মদিন ❤️","ভালোবাসি তোমায় 💕"];
-for(let i=0;i<24;i++){
-  const e=document.createElement("span"); e.className="rain"; e.textContent=rainTexts[i%rainTexts.length];
-  e.style.left=Math.random()*100+"%"; e.style.animationDuration=(14+Math.random()*14)+"s";
-  e.style.animationDelay=(-Math.random()*25)+"s"; sky.appendChild(e);
-}
-for(let i=0;i<18;i++){
-  const e=document.createElement("span"); e.className="spark";
-  e.style.left=Math.random()*100+"%"; e.style.top=Math.random()*100+"%";
-  e.style.animationDelay=Math.random()*3+"s"; sky.appendChild(e);
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
 }
 
-function hearts(n=10){
-  for(let i=0;i<n;i++){
-    const h=document.createElement("span"); h.className="heart";
-    h.textContent=["❤️","💗","💕","✨","🫶"][Math.floor(Math.random()*5)];
-    h.style.left=Math.random()*100+"%"; h.style.top="-25px";
-    h.style.animationDuration=(4+Math.random()*4)+"s"; h.style.fontSize=(12+Math.random()*16)+"px";
-    sky.appendChild(h); setTimeout(()=>h.remove(),8500);
-  }
-}
-setInterval(()=>hearts(3),2200);
-
-function show(id){
-  $$(".page").forEach(x=>x.classList.add("hidden"));
-  const page=$("#"+id); page.classList.remove("hidden");
-  page.querySelector(".inner")?.classList.add("reveal");
-  window.scrollTo({top:0,behavior:"smooth"});
-  hearts(12);
-  if(id==="s3") startTyping();
-  if(id==="s12") setTimeout(()=>$("#finalReveal").classList.remove("hidden"),1200);
-}
-$$("[data-next]").forEach(btn=>btn.addEventListener("click",()=>show(btn.dataset.next)));
-
-$("#openBtn").addEventListener("click",()=>{
-  music.play().then(()=>{$("#musicBtn").textContent="🔊"}).catch(()=>{});
-  show("s2");
-});
-
-$("#envelope").addEventListener("click",()=>{
-  $("#envelope").classList.add("open");
-  setTimeout(()=>$("#letterNext").classList.remove("hidden"),850);
-});
-$("#envelope").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#envelope").click()}});
-
-let typingStarted=false;
-function startTyping(){
-  if(typingStarted)return; typingStarted=true;
-  const target=$("#typed"), text=CONFIG.birthdayMessage; let i=0;
-  const tick=()=>{target.textContent=text.slice(0,i++); if(i<=text.length)setTimeout(tick,20)};
-  tick();
-}
-
-const flirtLines=[
- "তুমি জানো তুমি এত সুন্দর কেন? 👀",
- "কারণ তোমাকে সুন্দর না বানালে আমার crush হওয়া সম্ভব ছিল না. 😌❤️",
- "আর এখন সমস্যা হলো… crush থেকে তুমি favourite হয়ে গেছো। 🫠❤️",
- "শেষ কথা: তোমাকে দেখলে আমার brain একটু buffering করে। 😭💕"
-];
-let fi=0;
-$("#flirtBtn").addEventListener("click",()=>{
-  fi=(fi+1)%flirtLines.length; $("#flirtLine").textContent=flirtLines[fi]; hearts(8);
-});
-
-const levels=[1,10,50,100,500,1000,Infinity];
-let li=0;
-$("#loveBtn").addEventListener("click",()=>{
-  li=Math.min(li+1,levels.length-1);
-  const v=levels[li], shown= v===Infinity ? "∞" : v+"%";
-  $("#percent").textContent=shown;
-  $("#bar").style.width=(v===Infinity?100:Math.min(v,100))+"%";
-  $("#meterText").textContent=v===Infinity?"Error 404: Love limit not found. ❤️":"Hmm… still not enough. 😌";
-  hearts(14);
-});
-
-$("#gift").addEventListener("click",()=>{
-  $("#gift").classList.add("open");
-  $("#giftText").innerHTML="<b>My biggest gift isn't something I can buy…<br>It's having you in my life. ❤️</b>";
-  $("#giftNext").classList.remove("hidden"); hearts(20);
-});
-$("#gift").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" ")$("#gift").click()});
-
-$("#musicBtn").addEventListener("click",()=>{
-  if(music.paused){music.play().then(()=>$("#musicBtn").textContent="🔊").catch(()=>toast("Add your music file in the audio section 🎵"))}
-  else{music.pause();$("#musicBtn").textContent="🔇"}
-});
-function toast(t){const x=$("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2500)}
-
-$("#replay").addEventListener("click",()=>{
-  typingStarted=false; li=0; fi=0;
-  $("#percent").textContent="1%";$("#bar").style.width="1%";
-  $("#meterText").textContent="Just getting started… ❤️";
-  $("#envelope").classList.remove("open");$("#letterNext").classList.add("hidden");
-  $("#finalReveal").classList.add("hidden");
-  $("#gift").classList.remove("open");$("#giftText").textContent="Tap the gift.";$("#giftNext").classList.add("hidden");
-  music.currentTime=0;
-  show("s1");
-});
-
-/* Swipe-friendly keyboard navigation for desktop/tablet */
-document.addEventListener("keydown",e=>{
-  if(e.key!=="ArrowRight")return;
-  const ids=$$(".page"), current=ids.findIndex(x=>!x.classList.contains("hidden"));
-  if(current>=0 && current<ids.length-1) show(ids[current+1].id);
-});
+setInterval(createHeart,350);
 </script>
+
 </body>
 </html>
