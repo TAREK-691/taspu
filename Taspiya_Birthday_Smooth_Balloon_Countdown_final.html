@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Taspiya Birthday ❤️</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020202}
+body{font-family:Arial,Helvetica,sans-serif}
+canvas{display:block;width:100%;height:100%}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<script>
+const c=document.getElementById("c"),ctx=c.getContext("2d");
+let W,H,DPR;
+function resize(){
+  DPR=Math.min(devicePixelRatio||1,2);
+  W=innerWidth;H=innerHeight;
+  c.width=W*DPR;c.height=H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+addEventListener("resize",resize);resize();
+
+const COLORS=["#ff5ecb","#ffd34f","#62eaff","#9b7cff","#ff7099","#6dffb5","#fff"];
+let phase="countdown",phaseStart=performance.now(),scene=0,letters=[];
+
+const scenes=[
+ {lines:["HAPPY","BIRTHDAY","DEAR TASPIYA ❤️"],hold:8500},
+ {lines:["MANY MANY","RETURNS OF THE DAY","DEAR BOW JAN","UMMMAAHH 😘❤️"],hold:10500}
+];
+
+function clamp(v,a=0,b=1){return Math.max(a,Math.min(b,v))}
+function smooth(t){t=clamp(t);return t*t*(3-2*t)}
+function smoother(t){t=clamp(t);return t*t*t*(t*(t*6-15)+10)}
+
+function buildLetters(){
+  letters=[];
+  const maxWidth=W*.92;
+  const base=Math.min(48,W*.105);
+  const lineGap=base*1.38;
+
+  scenes[scene].lines.forEach((line,li)=>{
+    let fs=base;
+    if(line.length>16) fs*=.68;
+    else if(line.length>13) fs*=.76;
+    else if(line.length>10) fs*=.86;
+
+    // Keep each line inside the screen
+    ctx.font=`700 ${fs}px Arial`;
+    let chars=[...line];
+    let spacing=Math.max(2,fs*.055);
+    let widths=chars.map(ch=>ctx.measureText(ch).width);
+    let total=widths.reduce((a,b)=>a+b,0)+spacing*(chars.length-1);
+    if(total>maxWidth){
+      fs*=maxWidth/total;
+      ctx.font=`700 ${fs}px Arial`;
+      widths=chars.map(ch=>ctx.measureText(ch).width);
+      total=widths.reduce((a,b)=>a+b,0)+spacing*(chars.length-1);
+    }
+
+    const y0=H/2-((scenes[scene].lines.length-1)*lineGap)/2;
+    let x=(W-total)/2;
+    chars.forEach((ch,i)=>{
+      if(ch===" "){x+=widths[i]+spacing*1.4;return}
+      letters.push({
+        ch,x:x+widths[i]/2,y:y0+li*lineGap,
+        r:Math.max(14,Math.min(26,fs*.43)),
+        color:COLORS[(letters.length+li)%COLORS.length],
+        // orderly, evenly spaced timing: no jumping over each other
+        delay:letters.length*150,
+        seed:letters.length*.73
+      });
+      x+=widths[i]+spacing;
+    });
+  });
+}
+
+function drawBalloon(b,t){
+  const enter=smooth(clamp((t-b.delay)/1250));
+  // Start directly below its own final x, then rise smoothly.
+  // This prevents balloons from crossing over other letters.
+  const x=b.x + Math.sin((t/900)+b.seed)*2.5*enter;
+  const y=H+90-(H+90-b.y)*enter;
+  const scale=.45+.55*enter;
+  const r=b.r*scale;
+
+  ctx.save();
+  ctx.translate(x,y);
+
+  // string
+  ctx.globalAlpha=.42*enter;
+  ctx.strokeStyle=b.color;ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(0,r*.82);ctx.quadraticCurveTo(2,r*1.8,0,r*2.55);ctx.stroke();
+
+  // glow
+  ctx.globalAlpha=.22*enter;
+  ctx.shadowBlur=18;ctx.shadowColor=b.color;ctx.fillStyle=b.color;
+  ctx.beginPath();ctx.ellipse(0,0,r*.82,r,0,0,Math.PI*2);ctx.fill();
+
+  // balloon
+  ctx.globalAlpha=.96*enter;
+  ctx.shadowBlur=9;ctx.shadowColor=b.color;
+  const g=ctx.createRadialGradient(-r*.3,-r*.38,r*.05,0,0,r);
+  g.addColorStop(0,"#fff");g.addColorStop(.13,b.color);g.addColorStop(1,b.color);
+  ctx.fillStyle=g;
+  ctx.beginPath();ctx.ellipse(0,0,r*.82,r,0,0,Math.PI*2);ctx.fill();
+
+  // knot
+  ctx.shadowBlur=0;ctx.fillStyle=b.color;
+  ctx.beginPath();ctx.moveTo(-r*.14,r*.8);ctx.lineTo(r*.14,r*.8);ctx.lineTo(0,r*1.04);ctx.closePath();ctx.fill();
+
+  // letter
+  ctx.globalAlpha=enter;
+  ctx.fillStyle="#fff";
+  ctx.font=`700 ${Math.max(11,r*.95)}px Arial`;
+  ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.shadowBlur=2;ctx.shadowColor="#24103d";
+  ctx.fillText(b.ch,0,1);
+  ctx.restore();
+}
+
+function particles(now){
+  for(let i=0;i<26;i++){
+    const x=(i*97.3)%W;
+    const p=((now/7000)+(i/26))%1;
+    const y=H+20-p*(H+40);
+    ctx.globalAlpha=.08*(1-p);
+    ctx.fillStyle=COLORS[i%COLORS.length];
+    ctx.beginPath();ctx.arc(x,y,1+(i%2),0,Math.PI*2);ctx.fill();
+  }
+  ctx.globalAlpha=1;
+}
+
+function countdown(t){
+  ctx.fillStyle="#020202";ctx.fillRect(0,0,W,H);
+  const n=5-Math.floor(t/1000);
+  const p=(t%1000)/1000;
+  const inP=smoother(p);
+  const scale=.72+.28*inP;
+  const alpha=p<.82?1:1-(p-.82)/.18;
+
+  ctx.save();
+  ctx.translate(W/2,H/2);
+  ctx.scale(scale,scale);
+  ctx.globalAlpha=alpha;
+  ctx.font=`700 ${Math.min(100,W*.22)}px Arial`;
+  ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.shadowBlur=28;ctx.shadowColor=COLORS[(5-n)%COLORS.length];
+  ctx.fillStyle=COLORS[(5-n)%COLORS.length];
+  ctx.fillText(n,0,0);
+  ctx.shadowBlur=0;
+  ctx.fillStyle="#1b1230";ctx.globalAlpha=alpha*.22;
+  ctx.fillText(n,0,0);
+  ctx.restore();
+
+  ctx.globalAlpha=.45;
+  ctx.font=`500 ${Math.min(15,W*.035)}px Arial`;
+  ctx.textAlign="center";
+  ctx.fillStyle="#aaa";
+  ctx.fillText("A little surprise is coming...",W/2,H/2+80);
+  ctx.globalAlpha=1;
+}
+
+function drawScene(t){
+  ctx.fillStyle="#020202";ctx.fillRect(0,0,W,H);
+  particles(performance.now());
+
+  // First scene: balloons enter from below, stay, then smoothly reverse
+  // the same motion to leave the screen.
+  let exitProgress=0;
+  if(scene===0){
+    const totalIn=letters.length*150+1350;
+    const fadeStart=Math.max(5000,totalIn+1900);
+    const fadeDur=2200;
+    if(t>fadeStart){
+      exitProgress=smooth(clamp((t-fadeStart)/fadeDur));
+    }
+  }
+
+  ctx.save();
+  ctx.globalAlpha=1-exitProgress;
+
+  if(exitProgress===0){
+    letters.forEach(b=>drawBalloon(b,t));
+  }else{
+    letters.forEach(b=>{
+      const enter=smooth(clamp((t-b.delay)/1250));
+      const x=b.x + Math.sin((t/900)+b.seed)*2.5*enter;
+      const baseY=H+90-(H+90-b.y)*enter;
+      // Reverse the entrance path: move downward past the bottom.
+      const y=baseY - exitProgress*(H*.32);
+      const scale=(.45+.55*enter)*(1-.30*exitProgress);
+
+      // Draw the balloon with the same styling as drawBalloon, but on its
+      // reversed path so the exit visibly mirrors the entrance.
+      const r=b.r*scale;
+      ctx.save();
+      ctx.translate(x,y);
+
+      ctx.globalAlpha=.42*(1-exitProgress)*enter;
+      ctx.strokeStyle=b.color;ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(0,r*.82);ctx.quadraticCurveTo(2,r*1.8,0,r*2.55);ctx.stroke();
+
+      ctx.globalAlpha=.22*(1-exitProgress)*enter;
+      ctx.shadowBlur=18;ctx.shadowColor=b.color;ctx.fillStyle=b.color;
+      ctx.beginPath();ctx.ellipse(0,0,r*.82,r,0,0,Math.PI*2);ctx.fill();
+
+      ctx.globalAlpha=.96*(1-exitProgress)*enter;
+      ctx.shadowBlur=9;ctx.shadowColor=b.color;
+      const g=ctx.createRadialGradient(-r*.3,-r*.38,r*.05,0,0,r);
+      g.addColorStop(0,"#fff");g.addColorStop(.13,b.color);g.addColorStop(1,b.color);
+      ctx.fillStyle=g;
+      ctx.beginPath();ctx.ellipse(0,0,r*.82,r,0,0,Math.PI*2);ctx.fill();
+
+      ctx.shadowBlur=0;ctx.fillStyle=b.color;
+      ctx.beginPath();ctx.moveTo(-r*.14,r*.8);ctx.lineTo(r*.14,r*.8);ctx.lineTo(0,r*1.04);ctx.closePath();ctx.fill();
+
+      ctx.globalAlpha=(1-exitProgress)*enter;
+      ctx.fillStyle="#1b1230";
+      ctx.font=`700 ${Math.max(11,r*.95)}px Arial`;
+      ctx.textAlign="center";ctx.textBaseline="middle";
+      ctx.shadowBlur=0;
+      ctx.fillText(b.ch,0,1);
+      ctx.restore();
+    });
+  }
+
+  ctx.restore();
+}
+
+function frame(now){
+  const t=now-phaseStart;
+  if(phase==="countdown"){
+    countdown(t);
+    if(t>=5000){
+      phase="scene";scene=0;phaseStart=now;buildLetters();
+    }
+  }else{
+    drawScene(t);
+    const totalIn=letters.length*150+1350;
+    if(t>Math.max(scenes[scene].hold,totalIn+4500)){
+      phase="transition";
+      phaseStart=now;
+    }
+  }
+
+  if(phase==="transition"){
+    const q=clamp((now-phaseStart)/1100);
+    ctx.fillStyle="#020202";ctx.fillRect(0,0,W,H);
+    ctx.globalAlpha=1-smoother(q);
+    // redraw last scene behind a soft fade
+    const oldT=scenes[scene].hold+1000;
+    drawScene(oldT);
+    ctx.globalAlpha=1;
+    if(q>=1){
+      scene=(scene+1)%scenes.length;
+      buildLetters();
+      phase="scene";phaseStart=now;
+    }
+  }
+
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
