@@ -1,256 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Taspiya ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Taspiya!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap');
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        .container {
+            position: relative;
+            padding: 20px;
+        }
 
-body{
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at center, #35152d 0%, #160b19 45%, #050308 100%);
-    font-family:'Poppins',sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-}
+        .message {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #d63384;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            max-width: 600px;
+        }
 
-/* Stars */
-.star{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    opacity:.7;
-    animation:twinkle 2s infinite alternate;
-}
+        /* প্রথম মেসেজ */
+        #first-msg {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
 
-@keyframes twinkle{
-    from{opacity:.15;transform:scale(.6)}
-    to{opacity:1;transform:scale(1.5)}
-}
+        /* দ্বিতীয় মেসেজ (শুরুতে লুকানো থাকবে) */
+        #second-msg {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            color: #ff1493;
+        }
 
-/* Main */
-.container{
-    width:100%;
-    text-align:center;
-    position:relative;
-    z-index:5;
-    padding:25px;
-}
+        /* আনিমেটেড হার্ট ইফেক্ট */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: float 4s linear infinite;
+            opacity: 0.7;
+        }
 
-.message{
-    position:absolute;
-    width:100%;
-    left:0;
-    top:50%;
-    transform:translateY(-50%);
-    opacity:0;
-    pointer-events:none;
-}
-
-/* First text */
-.first{
-    animation:firstMessage 5s ease forwards;
-}
-
-.first h1{
-    font-family:'Great Vibes',cursive;
-    font-size:clamp(48px,11vw,100px);
-    color:#fff;
-    text-shadow:
-        0 0 10px #ff7eb3,
-        0 0 25px #ff4f9a,
-        0 0 50px #ff2d82;
-}
-
-.first .heart{
-    display:inline-block;
-    animation:heartbeat 1s infinite;
-}
-
-/* Second text */
-.second{
-    animation:secondMessage 2s ease forwards;
-    animation-delay:5s;
-}
-
-.second h2{
-    font-family:'Great Vibes',cursive;
-    font-size:clamp(38px,8vw,75px);
-    color:#fff;
-    text-shadow:
-        0 0 12px #ff8ac0,
-        0 0 30px #ff3d91;
-    line-height:1.2;
-}
-
-.second p{
-    margin-top:18px;
-    font-size:clamp(18px,4vw,30px);
-    letter-spacing:2px;
-    color:#ffd6e8;
-}
-
-@keyframes firstMessage{
-    0%{
-        opacity:0;
-        transform:translateY(-40%);
-        filter:blur(12px);
-    }
-    18%{
-        opacity:1;
-        transform:translateY(-50%);
-        filter:blur(0);
-    }
-    72%{
-        opacity:1;
-        transform:translateY(-50%);
-        filter:blur(0);
-    }
-    100%{
-        opacity:0;
-        transform:translateY(-70%) scale(1.15);
-        filter:blur(15px);
-    }
-}
-
-@keyframes secondMessage{
-    0%{
-        opacity:0;
-        transform:translateY(-30%) scale(.85);
-        filter:blur(15px);
-    }
-    100%{
-        opacity:1;
-        transform:translateY(-50%) scale(1);
-        filter:blur(0);
-    }
-}
-
-@keyframes heartbeat{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.35)}
-}
-
-/* Floating hearts */
-.heartFloat{
-    position:absolute;
-    bottom:-30px;
-    font-size:20px;
-    animation:floatUp linear forwards;
-    opacity:0;
-}
-
-@keyframes floatUp{
-    0%{
-        transform:translateY(0) rotate(0deg);
-        opacity:0;
-    }
-    15%{opacity:.9}
-    100%{
-        transform:translateY(-110vh) rotate(360deg);
-        opacity:0;
-    }
-}
-
-/* Glow circle */
-.glow{
-    position:absolute;
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    background:#ff3f91;
-    filter:blur(130px);
-    opacity:.15;
-    animation:pulse 4s infinite alternate;
-}
-
-@keyframes pulse{
-    from{transform:scale(.8);opacity:.1}
-    to{transform:scale(1.3);opacity:.25}
-}
-</style>
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="glow"></div>
-
-<!-- Stars -->
-<div class="star" style="top:10%;left:15%;animation-delay:.2s"></div>
-<div class="star" style="top:18%;left:80%;animation-delay:1s"></div>
-<div class="star" style="top:35%;left:8%;animation-delay:.5s"></div>
-<div class="star" style="top:70%;left:90%;animation-delay:1.3s"></div>
-<div class="star" style="top:82%;left:20%;animation-delay:.8s"></div>
-<div class="star" style="top:55%;left:75%;animation-delay:.3s"></div>
-<div class="star" style="top:25%;left:45%;animation-delay:1.5s"></div>
-<div class="star" style="top:90%;left:65%;animation-delay:.6s"></div>
-
-<div class="container">
-
-    <!-- First Message -->
-    <div class="message first">
-        <h1>
-            Happy Birthday<br>
-            Dear Taspiya <span class="heart">❤️</span>
-        </h1>
+    <div class="container">
+        <div id="first-msg" class="message">
+            Happy Birthday Dear Taspiya ❤️
+        </div>
+        
+        <div id="second-msg" class="message">
+            Many many happy returns of the day dear bow jan ummmah 💖😘
+        </div>
     </div>
 
-    <!-- Second Message -->
-    <div class="message second">
-        <h2>
-            Many Many Returns<br>
-            of the Day
-        </h2>
+    <script>
+        // ৩.৫ সেকেন্ড পর প্রথম মেসেজটি গায়েব হয়ে যাবে এবং দ্বিতীয় মেসেজটি আসবে
+        setTimeout(() => {
+            const firstMsg = document.getElementById('first-msg');
+            const secondMsg = document.getElementById('second-msg');
 
-        <p>
-            Dear Bow 🥺❤️
-        </p>
+            // প্রথম মেসেজ হাইড করা
+            firstMsg.style.opacity = '0';
+            firstMsg.style.transform = 'translate(-50%, -60%) scale(0.8)';
 
-        <p>
-            Ummah 😘💋
-        </p>
-    </div>
+            // দ্বিতীয় মেসেজ শো করা
+            setTimeout(() => {
+                firstMsg.style.display = 'none';
+                secondMsg.style.opacity = '1';
+                secondMsg.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            }, 1000); // ১ সেকেন্ড ফেড আউট আনিমেসনের সময়
 
-</div>
+        }, 3500); // ৩.৫ সেকেন্ড পর লেখা পরিবর্তন হবে
 
-<script>
-/* Floating hearts continuously */
-function createHeart(){
-    const heart=document.createElement("div");
-    heart.className="heartFloat";
+        // ব্যাকগ্রাউন্ডে ভাসমান হার্ট তৈরি করার ফাংশন
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
 
-    const hearts=["❤️","💕","💗","💖","💘","💞","🌸"];
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
 
-    heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
-
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(15+Math.random()*25)+"px";
-    heart.style.animationDuration=(5+Math.random()*5)+"s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },10000);
-}
-
-setInterval(createHeart,350);
-</script>
-
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
